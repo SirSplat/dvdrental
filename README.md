@@ -6,6 +6,7 @@ So either pull the image or build it yourself.
 ## Pull the image
 ```
 docker pull sirsplat/dvdrental:latest
+```
 
 Execute the database tests first, this is so that you know the state of your database prior to doing anything with it.
 
