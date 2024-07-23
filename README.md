@@ -133,4 +133,4 @@ A complete environment for the "Database Design, an Introduction" course.
       + foreign_keys/store_address_id_fk .......................................... ok
       + foreign_keys/store_manager_staff_id_fk @v1.0-restore ...................... ok
     ```
-* Add some data -> **WIP**
+* Add some data pgprove tests -> **WIP**
