@@ -5,7 +5,7 @@ FROM postgres:16-alpine AS build
 RUN apk add --no-cache --update \
     postgresql-dev postgresql-contrib git openssl build-base make perl perl-dev less wget \
     llvm15-dev clang15 \
-    && rm -rf /var/cache/apk/* /tmp/*
+    && rm -rf /var/cache/apk/* /tmp/* 
 
 # Install pgTAP
 RUN cpan TAP::Parser::SourceHandler::pgTAP
@@ -32,6 +32,9 @@ WORKDIR /code
 
 # Copy initialization script (if any)
 COPY ./initdb.sh /docker-entrypoint-initdb.d/.
+
+# Set the user to postgres, required to comply with scout "Default non-root User" policy
+USER postgres
 
 # Set the command to run PostgreSQL
 CMD ["postgres"]
