@@ -48,9 +48,11 @@ A complete environment for the "Database Design, an Introduction" course.
     ```
 * Start a container.
     ```
-    docker run -d --name dvdrental \
-        --mount "type=bind,src=$(pwd)/db/conf.d,dst=/etc/postgresql/conf.d" \
+    docker run -d \
+        --name dvdrental \
         -e POSTGRES_PASSWORD=mysecretpassword \
+        --mount "type=bind,src=$(pwd)/db/conf.d,dst=/etc/postgresql/conf.d" \
+        -p 5555:5432 \
         sirsplat/dvdrental:latest
     ```
 * Execute the pg_prove first, this is so that you know the state of your database prior to doing anything with it.
@@ -96,6 +98,8 @@ A complete environment for the "Database Design, an Introduction" course.
         Result: FAIL
         ```
         The missing schemas and all related DDL, DML is expected to fail at this point because the database has not yet been deployed.
+
+        This is not a pgTAP tutorial but feel free to head on over to [pgTAP](https://pgtap.org/). In fact I encourage you to do so!
 * Execute the sqitch migrations.
     * But first check the status of your database.
     ```
@@ -133,4 +137,7 @@ A complete environment for the "Database Design, an Introduction" course.
       + foreign_keys/store_address_id_fk .......................................... ok
       + foreign_keys/store_manager_staff_id_fk @v1.0-restore ...................... ok
     ```
+
+    This is not a sqitch tutorial but feel free to head on over to [sqitch](https://sqitch.org/). In fact I encourage you to do so!
+
 * Add some pgtap data tests -> **WIP**
