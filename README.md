@@ -27,8 +27,8 @@ A complete environment for the "Database Design, an Introduction" course.
 	        email = Your Email Address
         EOF
         ```
-    * As youre here (in your home directory), you might as well create a .pgpass file (not in the .sqitch directory!)
-        if youre on a Windose machine, youre on your own.
+    * As you're here (in your home directory), you might as well create a .pgpass file (not in the .sqitch directory!)
+        if you're on a Windose machine, you're on your own.
         ```
         cat <<EOF > ~/.pgpass
         *:*:*:*:mysecretpassword
@@ -58,7 +58,7 @@ A complete environment for the "Database Design, an Introduction" course.
         ```
         ~/pg_prove --ext .sql -r -h localhost -p 5555 -U dbo -d dvdrental -f ./pgprove
         ```
-        If this is the first time the container is spunup, the output will be similar to:
+        If this is the first time the container is spun up, the output will be similar to:
         ```
         ./pgprove/cluster/cluster.sql .................................................................................................... ok
         ./pgprove/cluster/language/c.sql ................................................................................................. ok
@@ -101,7 +101,7 @@ A complete environment for the "Database Design, an Introduction" course.
     ```
     ~/sqitch status dvdrental --chdir ./migrations
     ```
-    And again, if this is the first time the container is spunup, the output will be similar to:
+    And again, if this is the first time the container is spun up, the output will be similar to:
     ```
     # On database dvdrental
     No changes deployed
@@ -133,4 +133,4 @@ A complete environment for the "Database Design, an Introduction" course.
       + foreign_keys/store_address_id_fk .......................................... ok
       + foreign_keys/store_manager_staff_id_fk @v1.0-restore ...................... ok
     ```
-* Add some data pgprove tests -> **WIP**
+* Add some pgtap data tests -> **WIP**
