@@ -61,7 +61,7 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
         -p 5555:5432 \
         sirsplat/dvdrental:latest
     ```
-* Execute pg_prove, this is so that you can see the state of your database prior to doing anything with it.
+* Execute [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap), this is so that you can see the state of your database before doing anything with it.
     ```
     ~/pg_prove --ext .sql -r -h localhost -p 5555 -U dbo -d dvdrental -f ./pgprove
     ```
@@ -101,13 +101,14 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
     Files=1373, Tests=16418, 44 wallclock secs ( 2.62 usr  1.30 sys + 25.10 cusr  2.86 csys = 31.88 CPU)
     Result: FAIL
     ```
-    The missing schemas and all related DDL, DML is expected to fail at this point because the database has not yet been deployed.
+    The missing schemas and all related DDL, and DML are expected to fail at this point because the database has not yet been deployed.
 
-    While pg_prove is executing you should see in your Docker Desktop something like this, see [here](./pgprove/pg_prove-scrrenshot.png) or
+    While [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap) is executing you should see in your Docker Desktop something like this, see [here](./pgprove/pg_prove-scrrenshot.png) or
     if using the cmd line, see [here](./pgprove/pg_prove-docker-ps-screenshot.png).
 
-    This is not a [pgTAP](https://pgtap.org/) tutorial but feel free to head on over to [pgTAP](https://pgtap.org/). In fact I encourage you to do so!
-* Execute sqitch.
+    This is not a [pgTAP](https://pgtap.org/) tutorial but feel free to head on over to [pgTAP](https://pgtap.org/). I encourage you to do so!
+    This is not a [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap) tutorial but feel free to head on over to [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap). I encourage you to do so!
+* Execute [sqitch](https://sqitch.org/).
     * But first check the status of your database.
     ```
     ~/sqitch status dvdrental --chdir ./migrations
@@ -134,7 +135,7 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
       * indexes/city_pk
       * indexes/country_pk
     ```
-    * So lets do a deployment.
+    * So let's do a deployment.
     ```
     ~/sqitch deploy dvdrental --chdir ./migrations
     ```
@@ -162,9 +163,9 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
       + foreign_keys/store_manager_staff_id_fk @v1.0-restore ...................... ok
     ```
 
-    While sqitch is executing you should see in your Docker Desktop something like this, see [here](./migrations/sqitch-screenshot.png) or
+    While [sqitch](https://sqitch.org/) is executing you should see in your Docker Desktop something like this, see [here](./migrations/sqitch-screenshot.png) or
     if using the cmd line, see [here](./migrations/sqitch-docker-ps-screenshot.png).
 
-    This is not a sqitch tutorial but feel free to head on over to [sqitch](https://sqitch.org/). In fact I encourage you to do so!
+    This is not a [sqitch](https://sqitch.org/) tutorial but feel free to head on over to [sqitch](https://sqitch.org/). I encourage you to do so!
 
 * Add some pgtap data tests -> **WIP**
