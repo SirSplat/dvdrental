@@ -4,7 +4,7 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
 # What this is NOT
 This is not a [Docker Desktop](https://www.docker.com/products/docker-desktop/) tutorial so head on over to [Docker Desktop](https://www.docker.com/products/docker-desktop/)!
 
-This is not a docker [cli](https://docs.docker.com/engine/reference/commandline/cli/) tutorial so head on over to docker [cli](https://docs.docker.com/engine/reference/commandline/cli/)!
+This is not a [Docker cli](https://docs.docker.com/engine/reference/commandline/cli/) tutorial so head on over to [Docker cli](https://docs.docker.com/engine/reference/commandline/cli/)!
 
 This is not a [pgTAP](https://pgtap.org/) tutorial but feel free to head on over to [pgTAP](https://pgtap.org/). I encourage you to do so!
 
