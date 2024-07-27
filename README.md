@@ -1,18 +1,29 @@
 # Introduction
 A simple PostgreSQL cluster for use by the "Database Design, an Introduction" course.
 
+# What this is NOT
+This is not a [Docker Desktop](https://www.docker.com/products/docker-desktop/) tutorial so head on over to [Docker Desktop](https://www.docker.com/products/docker-desktop/)!
+
+This is not a docker [cli](https://docs.docker.com/engine/reference/commandline/cli/) tutorial so head on over to docker [cli](https://docs.docker.com/engine/reference/commandline/cli/)!
+
+This is not a [pgTAP](https://pgtap.org/) tutorial but feel free to head on over to [pgTAP](https://pgtap.org/). I encourage you to do so!
+
+This is not a [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap) tutorial but feel free to head on over to [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap). I encourage you to do so!
+
+This is not a [sqitch](https://sqitch.org/) tutorial but feel free to head on over to [sqitch](https://sqitch.org/). I encourage you to do so!
+    
 # Initial Environment Setup
 * Pull the [dvdrental database image](https://hub.docker.com/r/sirsplat/dvdrental)
     and follow the "How to use this image".
 * Create the DVDRental application database:
     ```
-    docker exec dvdrental dvrental bash /code/initdb.sh
+    docker exec dvdrental dvdrental bash /code/initdb.sh
     ```
 * Clone [this repo](https://github.com/SirSplat/dvdrental):
     ```
     git clone https://github.com/SirSplat/dvdrental.git
     ```
-    This contains all the DDL, DML you'll require, [sqitch migration scripts](https://github.com/SirSplat/dvdrental/tree/main/migrations) and [pg_prove tests](https://github.com/SirSplat/dvdrental/tree/main/pgprove).
+    This contains all the DDL, and DML you'll require, [sqitch migration scripts](https://github.com/SirSplat/dvdrental/tree/main/migrations) and [pg_prove tests](https://github.com/SirSplat/dvdrental/tree/main/pgprove).
 * Pull the [pg_prove image](https://hub.docker.com/r/itheory/pg_prove)
     and follow "How to use this image".
 * Pull the [sqitch image](https://hub.docker.com/r/sqitch/sqitch)
@@ -36,7 +47,7 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
         EOF
         ```
     * As you're here (in your home directory), you might as well create a .pgpass file (not in the .sqitch directory!)
-        if you're on a Windose machine, you're on your own!
+        if you're on a Windows machine, you're on your own!
         ```
         cat <<EOF > ~/.pgpass
         *:*:*:*:mysecretpassword
@@ -45,8 +56,8 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
         ```
         chmod 0600 ~/.pgpass
         ```
-        While this is breaking every rule about placing secrets in plain text in a git repo. I'm still going to do it!
-        As it's helpful not to enter passwords the whole time and it's only a local docker container anyway!
+        This is breaking every rule about placing secrets in plain text in a git repo. I'm still going to do it!
+        It's helpful not to enter passwords the whole time and it's only a local docker container anyway!
 
     Do not worry about executing:
     ```
@@ -58,7 +69,7 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
 * Open your terminal.
 * Change to the project folder:
     ```
-    cd ~/worspace/dvdrental
+    cd ~/workspace/dvdrental
     ```
 * Execute [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap), this is so that you can see the state of your database before doing anything with it:
     ```
@@ -102,11 +113,8 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
     ```
     The missing schemas and all related DDL, and DML are expected to fail at this point because the database has not yet been deployed:
 
-    While [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap) is executing you should see in your Docker Desktop something like this, see [here](./pgprove/pg_prove-scrrenshot.png) or
-    if using the cmd line, see [here](./pgprove/pg_prove-docker-ps-screenshot.png).
-
-    This is not a [pgTAP](https://pgtap.org/) tutorial but feel free to head on over to [pgTAP](https://pgtap.org/). I encourage you to do so!
-    This is not a [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap) tutorial but feel free to head on over to [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap). I encourage you to do so!
+    While [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap) is executing you should see in your [Docker Desktop](https://www.docker.com/products/docker-desktop/) something like this, see [here](./pgprove/pg_prove-scrrenshot.png) or
+    if using docker [cli](https://docs.docker.com/engine/reference/commandline/cli/), see [here](./pgprove/pg_prove-docker-ps-screenshot.png).
 * Execute [sqitch](https://sqitch.org/)
     * But first check the status of your database:
     ```
@@ -162,9 +170,6 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
       + foreign_keys/store_manager_staff_id_fk @v1.0-restore ...................... ok
     ```
 
-    While [sqitch](https://sqitch.org/) is executing you should see in your Docker Desktop something like this, see [here](./migrations/sqitch-screenshot.png) or
-    if using the cmd line, see [here](./migrations/sqitch-docker-ps-screenshot.png).
-
-    This is not a [sqitch](https://sqitch.org/) tutorial but feel free to head on over to [sqitch](https://sqitch.org/). I encourage you to do so!
-
+    While [sqitch](https://sqitch.org/) is executing you should see in your [Docker Desktop](https://www.docker.com/products/docker-desktop/) something like this, see [here](./migrations/sqitch-screenshot.png) or
+    if using docker [cli](https://docs.docker.com/engine/reference/commandline/cli/), see [here](./migrations/sqitch-docker-ps-screenshot.png).
 * Add some pgtap data tests -> **WIP**
