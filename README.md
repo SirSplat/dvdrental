@@ -2,16 +2,12 @@
 A simple PostgreSQL cluster for use by the "Database Design, an Introduction" course.
 
 # What this is NOT
-This is not a [Docker Desktop](https://www.docker.com/products/docker-desktop/) tutorial so head on over to [Docker Desktop](https://www.docker.com/products/docker-desktop/)!
+* This is not a [Docker Desktop](https://www.docker.com/products/docker-desktop/) tutorial so head on over to [Docker Desktop](https://www.docker.com/products/docker-desktop/)!
+* This is not a [Docker cli](https://docs.docker.com/engine/reference/commandline/cli/) tutorial so head on over to [Docker cli](https://docs.docker.com/engine/reference/commandline/cli/)!
+* This is not a [pgTAP](https://pgtap.org/) tutorial but feel free to head on over to [pgTAP](https://pgtap.org/). I encourage you to do so!
+* This is not a [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap) tutorial but feel free to head on over to [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap). I encourage you to do so!
+* This is not a [sqitch](https://sqitch.org/) tutorial but feel free to head on over to [sqitch](https://sqitch.org/). I encourage you to do so!
 
-This is not a [Docker cli](https://docs.docker.com/engine/reference/commandline/cli/) tutorial so head on over to [Docker cli](https://docs.docker.com/engine/reference/commandline/cli/)!
-
-This is not a [pgTAP](https://pgtap.org/) tutorial but feel free to head on over to [pgTAP](https://pgtap.org/). I encourage you to do so!
-
-This is not a [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap) tutorial but feel free to head on over to [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap). I encourage you to do so!
-
-This is not a [sqitch](https://sqitch.org/) tutorial but feel free to head on over to [sqitch](https://sqitch.org/). I encourage you to do so!
-    
 # Initial Environment Setup
 * Pull the [dvdrental database image](https://hub.docker.com/r/sirsplat/dvdrental)
     and follow the "How to use this image".
