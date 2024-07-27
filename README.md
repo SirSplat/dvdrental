@@ -3,23 +3,31 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
 
 # Initial Environment Setup
 * Pull the [dvdrental database image](https://hub.docker.com/r/sirsplat/dvdrental)
-* Clone [this repo](https://github.com/SirSplat/dvdrental)
+    and follow the "How to use this image".
+* Create the DVDRental application database:
+    ```
+    docker exec dvdrental dvrental bash /code/initdb.sh
+    ```
+* Clone [this repo](https://github.com/SirSplat/dvdrental):
+    ```
+    git clone https://github.com/SirSplat/dvdrental.git
+    ```
+    This contains all the DDL, DML you'll require, [sqitch migration scripts](https://github.com/SirSplat/dvdrental/tree/main/migrations) and [pg_prove tests](https://github.com/SirSplat/dvdrental/tree/main/pgprove).
 * Pull the [pg_prove image](https://hub.docker.com/r/itheory/pg_prove)
-    And follow "How to use this image"
+    and follow "How to use this image".
 * Pull the [sqitch image](https://hub.docker.com/r/sqitch/sqitch)
-    And follow "How to use this image".
-
+    and follow "How to use this image".
 * To help you out a little, you'll need to do this:
     * Open your terminal.
-    * Change to your home directory.
+    * Change to your home directory:
         ```
         cd ~
         ```
-    * Create a .sqitch directory.
+    * Create a .sqitch directory:
         ```
         mkdir .sqitch
         ```
-    * Create a sqitch.conf in the .sqitch directory you just created.
+    * Create a sqitch.conf in the .sqitch directory you just created:
         ```
         cat <<EOF > .sqitch/sqitch.conf
         [user]
@@ -28,7 +36,7 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
         EOF
         ```
     * As you're here (in your home directory), you might as well create a .pgpass file (not in the .sqitch directory!)
-        if you're on a Windose machine, you're on your own.
+        if you're on a Windose machine, you're on your own!
         ```
         cat <<EOF > ~/.pgpass
         *:*:*:*:mysecretpassword
@@ -38,9 +46,9 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
         chmod 0600 ~/.pgpass
         ```
         While this is breaking every rule about placing secrets in plain text in a git repo. I'm still going to do it!
-        As it's helpful not to enter passwords the whole time and it's only a local docker container anyway.
+        As it's helpful not to enter passwords the whole time and it's only a local docker container anyway!
 
-    Do not worry about executing
+    Do not worry about executing:
     ```
     ~/sqitch init ....
     ```
@@ -48,20 +56,11 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
 
 # Process
 * Open your terminal.
-* Change to the project folder.
+* Change to the project folder:
     ```
     cd ~/worspace/dvdrental
     ```
-* Start a container.
-    ```
-    docker run -d \
-        --name dvdrental \
-        -e POSTGRES_PASSWORD=mysecretpassword \
-        --mount "type=bind,src=$(pwd)/db/conf.d,dst=/etc/postgresql/conf.d" \
-        -p 5555:5432 \
-        sirsplat/dvdrental:latest
-    ```
-* Execute [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap), this is so that you can see the state of your database before doing anything with it.
+* Execute [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap), this is so that you can see the state of your database before doing anything with it:
     ```
     ~/pg_prove --ext .sql -r -h localhost -p 5555 -U dbo -d dvdrental -f ./pgprove
     ```
@@ -101,15 +100,15 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
     Files=1373, Tests=16418, 44 wallclock secs ( 2.62 usr  1.30 sys + 25.10 cusr  2.86 csys = 31.88 CPU)
     Result: FAIL
     ```
-    The missing schemas and all related DDL, and DML are expected to fail at this point because the database has not yet been deployed.
+    The missing schemas and all related DDL, and DML are expected to fail at this point because the database has not yet been deployed:
 
     While [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap) is executing you should see in your Docker Desktop something like this, see [here](./pgprove/pg_prove-scrrenshot.png) or
     if using the cmd line, see [here](./pgprove/pg_prove-docker-ps-screenshot.png).
 
     This is not a [pgTAP](https://pgtap.org/) tutorial but feel free to head on over to [pgTAP](https://pgtap.org/). I encourage you to do so!
     This is not a [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap) tutorial but feel free to head on over to [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap). I encourage you to do so!
-* Execute [sqitch](https://sqitch.org/).
-    * But first check the status of your database.
+* Execute [sqitch](https://sqitch.org/)
+    * But first check the status of your database:
     ```
     ~/sqitch status dvdrental --chdir ./migrations
     ```
@@ -135,7 +134,7 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
       * indexes/city_pk
       * indexes/country_pk
     ```
-    * So let's do a deployment.
+    * So let's do a deployment:
     ```
     ~/sqitch deploy dvdrental --chdir ./migrations
     ```
