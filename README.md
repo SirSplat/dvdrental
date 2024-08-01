@@ -4,16 +4,20 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
 # What this is NOT
 * This is not a [Docker Desktop](https://www.docker.com/products/docker-desktop/) tutorial so head on over to [Docker Desktop](https://www.docker.com/products/docker-desktop/)!
 * This is not a [Docker cli](https://docs.docker.com/engine/reference/commandline/cli/) tutorial so head on over to [Docker cli](https://docs.docker.com/engine/reference/commandline/cli/)!
+
+ I could create a tutorial if really wanted. Although the detailed documentation does a good job at giving you a solid foundation to learn from.
 * This is not a [pgTAP](https://pgtap.org/) tutorial but feel free to head on over to [pgTAP](https://pgtap.org/). I encourage you to do so!
 * This is not a [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap) tutorial but feel free to head on over to [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap). I encourage you to do so!
 * This is not a [sqitch](https://sqitch.org/) tutorial but feel free to head on over to [sqitch](https://sqitch.org/). I encourage you to do so!
 
 # Initial Environment Setup
-* Pull the [dvdrental database image](https://hub.docker.com/r/sirsplat/dvdrental)
-    and follow the "How to use this image".
+* Pull the [dvdrental database image](https://hub.docker.com/r/sirsplat/dvdrental):
+    ```
+    docker run -d --name dvdrental -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword sirsplat/dvdrental:latest
+    ```
 * Create the DVDRental application database:
     ```
-    docker exec dvdrental dvdrental bash /code/initdb.sh
+    docker exec dvdrental bash /code/initdb.sh
     ```
 * Clone [this repo](https://github.com/SirSplat/dvdrental):
     ```
@@ -69,7 +73,7 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
     ```
 * Execute [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap), this is so that you can see the state of your database before doing anything with it:
     ```
-    ~/pg_prove --ext .sql -r -h localhost -p 5555 -U dbo -d dvdrental -f ./pgprove
+    ~/pg_prove --ext .sql -r -h localhost -p 5432 -U dbo -d dvdrental -f ./pgprove
     ```
     If this is the first time the container is spun up, the output will be similar to:
     ```
@@ -140,7 +144,7 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
     ```
     * So let's do a deployment:
     ```
-    ~/sqitch deploy dvdrental --chdir ./migrations
+    ~/sqitch deploy dvdrental --chdir ./migrations --to @v0.1-triggers
     ```
     And now you should see something similar to:
     ```
