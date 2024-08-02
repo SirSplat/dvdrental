@@ -112,7 +112,7 @@ This contains all the DDL, and DML you'll require, [sqitch migration scripts](ht
 
     The missing schemas and all related DDL, and DML are expected to fail at this point because the database has not yet been deployed:
 
-    While [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap) is executing you should see in your [Docker Desktop](https://www.docker.com/products/docker-desktop/) something like this, see [here](./pgprove/pg_prove-scrrenshot.png) or
+    While [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap) is executing you should see in your [Docker Desktop](https://www.docker.com/products/docker-desktop/) something like this, see [here](./pgprove/pg_prove-screenshot.png) or
     if using docker [cli](https://docs.docker.com/engine/reference/commandline/cli/), see [here](./pgprove/pg_prove-docker-ps-screenshot.png).
 * Execute [sqitch](https://sqitch.org/), but first check the status of your database:
 
