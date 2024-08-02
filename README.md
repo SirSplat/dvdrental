@@ -64,8 +64,6 @@ This contains all the DDL, and DML you'll require, [sqitch migration scripts](ht
 
     The ./migrations directory already contains the sqitch.plan and sqitch.conf files that the above command would have created.
 
-# Process
-* Open your terminal.
 * Change to the project folder:
 
         cd ~/workspace/dvdrental
@@ -170,6 +168,8 @@ This contains all the DDL, and DML you'll require, [sqitch migration scripts](ht
 
     While [sqitch](https://sqitch.org/) is executing you should see in your [Docker Desktop](https://www.docker.com/products/docker-desktop/) something like this, see [here](./migrations/sqitch-screenshot.png) or
     if using docker [cli](https://docs.docker.com/engine/reference/commandline/cli/), see [here](./migrations/sqitch-docker-ps-screenshot.png).
+
+Now you have the [DVDRental sample PostgreSQL database](https://www.postgresqltutorial.com/postgresql-getting-started/postgresql-sample-database/) as it was designed (the good and the bad).
 
 # Copyright and License
 [MIT License](./LICENSE)
