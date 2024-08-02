@@ -13,15 +13,15 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
 # Initial Environment Setup
 * Pull the [dvdrental database image](https://hub.docker.com/r/sirsplat/dvdrental):
 
-    docker run -d --name dvdrental -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword sirsplat/dvdrental:latest
+        docker run -d --name dvdrental -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword sirsplat/dvdrental:latest
 
 * Create the DVDRental application database:
 
-    docker exec dvdrental bash /code/initdb.sh
+        docker exec dvdrental bash /code/initdb.sh
 
 * Clone [this repo](https://github.com/SirSplat/dvdrental):
 
-    git clone https://github.com/SirSplat/dvdrental.git
+        git clone https://github.com/SirSplat/dvdrental.git
 
 This contains all the DDL, and DML you'll require, [sqitch migration scripts](https://github.com/SirSplat/dvdrental/tree/main/migrations) and [pg_prove tests](https://github.com/SirSplat/dvdrental/tree/main/pgprove).
 * Pull the [pg_prove image](https://hub.docker.com/r/itheory/pg_prove)
