@@ -169,7 +169,15 @@ This contains all the DDL, and DML you'll require, [sqitch migration scripts](ht
     While [sqitch](https://sqitch.org/) is executing you should see in your [Docker Desktop](https://www.docker.com/products/docker-desktop/) something like this, see [here](./migrations/sqitch-screenshot.png) or
     if using docker [cli](https://docs.docker.com/engine/reference/commandline/cli/), see [here](./migrations/sqitch-docker-ps-screenshot.png).
 
-Now you have the [DVDRental sample PostgreSQL database](https://www.postgresqltutorial.com/postgresql-getting-started/postgresql-sample-database/) as it was designed (the good and the bad).
+Now you have the [DVDRental sample PostgreSQL database](https://www.postgresqltutorial.com/postgresql-getting-started/postgresql-sample-database/) as it was designed (the good and the bad) but better due to using sqitch and having pgTAP tests.
+
+# Whats coming next (in no particular order)
+* Well I guess data integrity tests (but this requiers pgtapme work)
+* Correct everything that is wrong with the original design
+** Identify what is incorrect, outdated or just doesn't conform with best practices
+** Develop test scripts
+** Develop migrations
+** Rince and Repeat!
 
 # Copyright and License
 [MIT License](./LICENSE)
