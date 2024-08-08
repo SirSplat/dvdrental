@@ -13,17 +13,13 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
 # Initial Environment Setup
 * Pull the [dvdrental database image](https://hub.docker.com/r/sirsplat/dvdrental):
 
-        docker run -d --name dvdrental -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword sirsplat/dvdrental:latest
-
-* Create the DVDRental application database:
-
-        docker exec dvdrental bash /code/initdb.sh
+        docker pull sirsplat/dvdrental
 
 * Clone [this repo](https://github.com/SirSplat/dvdrental):
 
         git clone https://github.com/SirSplat/dvdrental.git
 
-This contains all the DDL, and DML you'll require, [sqitch migration scripts](https://github.com/SirSplat/dvdrental/tree/main/migrations) and [pg_prove tests](https://github.com/SirSplat/dvdrental/tree/main/pgprove).
+    This contains all the DDL, DML, [sqitch migration scripts](https://github.com/SirSplat/dvdrental/tree/main/migrations) and [pg_prove tests](https://github.com/SirSplat/dvdrental/tree/main/pgprove) you will require.
 * Pull the [pg_prove image](https://hub.docker.com/r/itheory/pg_prove)
     and follow "How to use this image".
 * Pull the [sqitch image](https://hub.docker.com/r/sqitch/sqitch)
@@ -140,44 +136,49 @@ This contains all the DDL, and DML you'll require, [sqitch migration scripts](ht
 
     * So let's do a deployment:
 
-        ~/sqitch deploy dvdrental --chdir ./migrations --to @v0.1-triggers
+            ~/sqitch deploy dvdrental --chdir ./migrations --to @v0.1-triggers
 
-    And now you should see something similar to:
+        And now you should see something similar to:
 
-        Adding registry tables to dvdrental
-        Deploying changes to dvdrental
-          + appschema ................................................................. ok
-          + data_types/mpaa_rating-ENUM ............................................... ok
-          + data_types/year-DOMAIN .................................................... ok
-          + functions/_group_concat(text-text)-func ................................... ok
-          + functions/last_day(timestamp_without_time_zone)-func ...................... ok
-          + functions/last_updated()-trg-func ......................................... ok
-          .
-          .
-          .
-          + foreign_keys/payment_customer_id_fk ....................................... ok
-          + foreign_keys/payment_rental_id_fk ......................................... ok
-          + foreign_keys/payment_staff_id_fk .......................................... ok
-          + foreign_keys/rental_customer_id_fk ........................................ ok
-          + foreign_keys/rental_inventory_id_fk ....................................... ok
-          + foreign_keys/rental_staff_id_fk ........................................... ok
-          + foreign_keys/staff_address_id_fk .......................................... ok
-          + foreign_keys/store_address_id_fk .......................................... ok
-          + foreign_keys/store_manager_staff_id_fk @v1.0-restore ...................... ok
+            Adding registry tables to dvdrental
+            Deploying changes to dvdrental
+              + appschema ................................................................. ok
+              + data_types/mpaa_rating-ENUM ............................................... ok
+              + data_types/year-DOMAIN .................................................... ok
+              + functions/_group_concat(text-text)-func ................................... ok
+              + functions/last_day(timestamp_without_time_zone)-func ...................... ok
+              + functions/last_updated()-trg-func ......................................... ok
+              .
+              .
+              .
+              + foreign_keys/payment_customer_id_fk ....................................... ok
+              + foreign_keys/payment_rental_id_fk ......................................... ok
+              + foreign_keys/payment_staff_id_fk .......................................... ok
+              + foreign_keys/rental_customer_id_fk ........................................ ok
+              + foreign_keys/rental_inventory_id_fk ....................................... ok
+              + foreign_keys/rental_staff_id_fk ........................................... ok
+              + foreign_keys/staff_address_id_fk .......................................... ok
+              + foreign_keys/store_address_id_fk .......................................... ok
+              + foreign_keys/store_manager_staff_id_fk @v1.0-restore ...................... ok
 
 
-    While [sqitch](https://sqitch.org/) is executing you should see in your [Docker Desktop](https://www.docker.com/products/docker-desktop/) something like this, see [here](./migrations/sqitch-screenshot.png) or
+        While [sqitch](https://sqitch.org/) is executing you should see in your [Docker Desktop](https://www.docker.com/products/docker-desktop/) something like this, see [here](./migrations/sqitch-screenshot.png) or
     if using docker [cli](https://docs.docker.com/engine/reference/commandline/cli/), see [here](./migrations/sqitch-docker-ps-screenshot.png).
 
-Now you have the [DVDRental sample PostgreSQL database](https://www.postgresqltutorial.com/postgresql-getting-started/postgresql-sample-database/) as it was designed (the good and the bad) but better due to using sqitch and having pgTAP tests.
+There you have it. Now you have the [DVDRental sample PostgreSQL database](https://www.postgresqltutorial.com/postgresql-getting-started/postgresql-sample-database/) as it was designed (the good and the bad) but better:
+
+* not using a superuser
+* use a dbo role that owns everything, used by your database migration (I hope)
+* use sqitch for database migrations (again I hope and not an ORM!)
+* use pgTAP tests (any DBA's dream - database schema tests)
 
 # Whats coming next (in no particular order)
 * Well I guess data integrity tests (but this requiers pgtapme work)
 * Correct everything that is wrong with the original design
-** Identify what is incorrect, outdated or just doesn't conform with best practices
-** Develop test scripts
-** Develop migrations
-** Rince and Repeat!
+    1. Identify what is incorrect, outdated or just doesn't conform with best practices
+    2. Develop test scripts
+    3. Develop migrations
+    4. See point 1
 
 # Copyright and License
 [MIT License](./LICENSE)
