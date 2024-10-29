@@ -66,7 +66,7 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
 
 * Start the database container:
 
-        $ docker run --name dvdrental -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword -d dvdrental
+        docker run --name dvdrental -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword -d dvdrental
 
 * Execute [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap), this is so that you can see the state of your database before doing anything with it:
 
