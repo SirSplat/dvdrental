@@ -64,6 +64,10 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
 
         cd ~/workspace/dvdrental
 
+* Start the database container:
+
+        $ docker run --name dvdrental -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword -d dvdrental
+
 * Execute [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap), this is so that you can see the state of your database before doing anything with it:
 
         ~/pg_prove --ext .sql -r -h localhost -p 5432 -U dbo -d dvdrental -f ./pgprove
@@ -134,32 +138,32 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
           * indexes/city_pk
           * indexes/country_pk
 
-    * So let's do a deployment:
+* So let's do a deployment:
 
-            ~/sqitch deploy dvdrental --chdir ./migrations --to @v0.1-triggers
+        ~/sqitch deploy dvdrental --chdir ./migrations --to @v0.1-triggers
 
-        And now you should see something similar to:
+    And now you should see something similar to:
 
-            Adding registry tables to dvdrental
-            Deploying changes to dvdrental
-              + appschema ................................................................. ok
-              + data_types/mpaa_rating-ENUM ............................................... ok
-              + data_types/year-DOMAIN .................................................... ok
-              + functions/_group_concat(text-text)-func ................................... ok
-              + functions/last_day(timestamp_without_time_zone)-func ...................... ok
-              + functions/last_updated()-trg-func ......................................... ok
-              .
-              .
-              .
-              + foreign_keys/payment_customer_id_fk ....................................... ok
-              + foreign_keys/payment_rental_id_fk ......................................... ok
-              + foreign_keys/payment_staff_id_fk .......................................... ok
-              + foreign_keys/rental_customer_id_fk ........................................ ok
-              + foreign_keys/rental_inventory_id_fk ....................................... ok
-              + foreign_keys/rental_staff_id_fk ........................................... ok
-              + foreign_keys/staff_address_id_fk .......................................... ok
-              + foreign_keys/store_address_id_fk .......................................... ok
-              + foreign_keys/store_manager_staff_id_fk @v1.0-restore ...................... ok
+        Adding registry tables to dvdrental
+        Deploying changes to dvdrental
+          + appschema ................................................................. ok
+          + data_types/mpaa_rating-ENUM ............................................... ok
+          + data_types/year-DOMAIN .................................................... ok
+          + functions/_group_concat(text-text)-func ................................... ok
+          + functions/last_day(timestamp_without_time_zone)-func ...................... ok
+          + functions/last_updated()-trg-func ......................................... ok
+          .
+          .
+          .
+          + foreign_keys/payment_customer_id_fk ....................................... ok
+          + foreign_keys/payment_rental_id_fk ......................................... ok
+          + foreign_keys/payment_staff_id_fk .......................................... ok
+          + foreign_keys/rental_customer_id_fk ........................................ ok
+          + foreign_keys/rental_inventory_id_fk ....................................... ok
+          + foreign_keys/rental_staff_id_fk ........................................... ok
+          + foreign_keys/staff_address_id_fk .......................................... ok
+          + foreign_keys/store_address_id_fk .......................................... ok
+          + foreign_keys/store_manager_staff_id_fk @v1.0-restore ...................... ok
 
 
         While [sqitch](https://sqitch.org/) is executing you should see in your [Docker Desktop](https://www.docker.com/products/docker-desktop/) something like this, see [here](./migrations/sqitch-screenshot.png) or

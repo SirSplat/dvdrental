@@ -5,7 +5,7 @@ BEGIN;
 
   SELECT db_owner_is('dvdrental', 'dbo', 'Database dvdrental should have the correct owner.');
 
-  SELECT schemas_are( ARRAY['public', 'pgtap', 'sqitch', 'rental']::TEXT[], 'Database dvdrental should have the correct schemas.');
+  SELECT schemas_are( ARRAY['public', 'pgtap', 'sqitch', 'rental', 'pgcrypto']::TEXT[], 'Database dvdrental should have the correct schemas.');
 
   SELECT * FROM finish();
 ROLLBACK;
