@@ -13,7 +13,7 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
 # Initial Environment Setup
 * Pull the [dvdrental database image](https://hub.docker.com/r/sirsplat/dvdrental):
 
-        docker pull sirsplat/dvdrental
+        docker pull sirsplat/dvdrental:latest
 
 * Clone [this repo](https://github.com/SirSplat/dvdrental):
 
@@ -66,7 +66,7 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
 
 * Start the database container:
 
-        docker run --name dvdrental -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword -d dvdrental
+        docker run --name dvdrental -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword -d sirsplat/dvdrental:latest
 
 * Execute [pg_prove](https://github.com/theory/tap-parser-sourcehandler-pgtap), this is so that you can see the state of your database before doing anything with it:
 
@@ -169,7 +169,7 @@ A simple PostgreSQL cluster for use by the "Database Design, an Introduction" co
         While [sqitch](https://sqitch.org/) is executing you should see in your [Docker Desktop](https://www.docker.com/products/docker-desktop/) something like this, see [here](./migrations/sqitch-screenshot.png) or
     if using docker [cli](https://docs.docker.com/engine/reference/commandline/cli/), see [here](./migrations/sqitch-docker-ps-screenshot.png).
 
-There you have it. Now you have the [DVDRental sample PostgreSQL database](https://www.postgresqltutorial.com/postgresql-getting-started/postgresql-sample-database/) as it was designed (the good and the bad) but better:
+There you have it. Now you have the [DVDRental sample PostgreSQL database](https://www.postgresqltutorial.com/postgresql-getting-started/postgresql-sample-database/) as it was designed (the good, the bad and the ugly) but better:
 
 * not using a superuser
 * use a dbo role that owns everything, used by your database migration (I hope)
@@ -177,9 +177,9 @@ There you have it. Now you have the [DVDRental sample PostgreSQL database](https
 * use pgTAP tests (any DBA's dream - database schema tests)
 
 # Whats coming next (in no particular order)
-* Well I guess data integrity tests (but this requiers pgtapme work)
+* Well I guess data integrity tests (but this requiers pgtapme work. If I intend to use it for this project.)
 * Correct everything that is wrong with the original design
-    1. Identify what is incorrect, outdated or just doesn't conform with best practices
+    1. Identify what is incorrect, outdated or just doesn't conform with best practices (mine)
     2. Develop test scripts
     3. Develop migrations
     4. See point 1
