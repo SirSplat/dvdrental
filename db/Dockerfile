@@ -1,4 +1,4 @@
-FROM sirsplat/database:latest
+FROM sirsplat/postgresql:latest
 
 # Set the working directory
 WORKDIR /code
