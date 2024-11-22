@@ -175,6 +175,7 @@ There you have it. Now you have the [DVDRental sample PostgreSQL database](https
 * use a dbo role that owns everything, used by your database migration (I hope)
 * use sqitch for database migrations (again I hope and not an ORM!)
 * use pgTAP tests (any DBA's dream - database schema tests)
+* All privileges for role PUBLIC revoked from database and public schema
 
 # Whats coming next (in no particular order)
 * Well I guess data integrity tests (but this requiers pgtapme work. If I intend to use it for this project.)
