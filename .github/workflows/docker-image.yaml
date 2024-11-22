@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build:
@@ -12,6 +13,11 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
+      with:
+        platforms: all
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
@@ -29,3 +35,4 @@ jobs:
         file: ./db/Dockerfile
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/dvdrental:latest
+        platforms: linux/amd64,linux/arm64
