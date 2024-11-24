@@ -4,6 +4,15 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'db/Dockerfile'
+      - 'db/initdb.sh'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'db/Dockerfile'
+      - 'db/initdb.sh'
   workflow_dispatch:
 
 jobs:
