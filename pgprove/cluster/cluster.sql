@@ -3,9 +3,9 @@ BEGIN;
 
   SELECT tablespaces_are( ARRAY['pg_default', 'pg_global']::TEXT[], 'Cluster should have the correct tablespaces.');
 
-  SELECT roles_are( ARRAY['pg_database_owner', 'pg_read_all_data', 'pg_write_all_data', 'pg_monitor', 'pg_read_all_settings', 'pg_read_all_stats', 'pg_stat_scan_tables', 'pg_read_server_files', 'pg_write_server_files', 'pg_execute_server_program', 'pg_signal_backend', 'pg_checkpoint', 'pg_use_reserved_connections', 'pg_create_subscription', 'postgres', 'dbo']::TEXT[], 'Cluster should have the correct roles.');
+  SELECT roles_are( ARRAY['pg_maintain', 'pg_database_owner', 'pg_read_all_data', 'pg_write_all_data', 'pg_monitor', 'pg_read_all_settings', 'pg_read_all_stats', 'pg_stat_scan_tables', 'pg_read_server_files', 'pg_write_server_files', 'pg_execute_server_program', 'pg_signal_backend', 'pg_checkpoint', 'pg_use_reserved_connections', 'pg_create_subscription', 'postgres', 'dbo']::TEXT[], 'Cluster should have the correct roles.');
 
-  SELECT groups_are( ARRAY['pg_database_owner', 'pg_read_all_data', 'pg_write_all_data', 'pg_monitor', 'pg_read_all_settings', 'pg_read_all_stats', 'pg_stat_scan_tables', 'pg_read_server_files', 'pg_write_server_files', 'pg_execute_server_program', 'pg_signal_backend', 'pg_checkpoint', 'pg_use_reserved_connections', 'pg_create_subscription']::TEXT[], 'Cluster should have the correct groups.');
+  SELECT groups_are( ARRAY['pg_maintain', 'pg_database_owner', 'pg_read_all_data', 'pg_write_all_data', 'pg_monitor', 'pg_read_all_settings', 'pg_read_all_stats', 'pg_stat_scan_tables', 'pg_read_server_files', 'pg_write_server_files', 'pg_execute_server_program', 'pg_signal_backend', 'pg_checkpoint', 'pg_use_reserved_connections', 'pg_create_subscription']::TEXT[], 'Cluster should have the correct groups.');
 
   SELECT users_are( ARRAY['postgres', 'dbo']::TEXT[], 'Cluster should have the correct users.');
 
