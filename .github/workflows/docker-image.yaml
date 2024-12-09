@@ -16,8 +16,6 @@ jobs:
       directory: ./db
       tag: latest
       image_name: dvdrental
-      postgres_version: 17
-      variant: latest
       runner_debug: false
       step_debug: false
     secrets:
