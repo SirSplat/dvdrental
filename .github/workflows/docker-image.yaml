@@ -7,15 +7,22 @@ on:
   pull_request:
     branches:
       - main
+  # Manually trigger the workflow from the Actions tab
   workflow_dispatch:
+  # Schedule to run every Sunday at 01h00, this is to ensure the image is built
+  #   after the SirSplat/postgresql image has been built
+  schedule:
+    - cron: '0 1 * * 0'
 
 jobs:
   build-and-push:
+    # Make use of a shared workflow 
     uses: SirSplat/workflows/.github/workflows/build-and-push-docker-image.yaml@main
     with:
       directory: ./db
       tag: latest
       image_name: dvdrental
+      # Optional flags to enable workflow and step debugging
       runner_debug: false
       step_debug: false
     secrets:
